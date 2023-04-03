@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class IndexingApplication {
-    private static final String REGEX = "^(\\d+|\\d+(,|-)\\d+)*$";
+    private static final String REGEX = "^(?![-,])(?!.*(--|,,))[0-9,-]+(?:[^-,])$";
     private static final String PORT = "port";
     private static final String EXIT = "exit";
 
@@ -29,7 +29,8 @@ public class IndexingApplication {
                 if (indexes.length == 1) {
                     String string = scanner.nextLine();
                     while (!string.matches(REGEX)) {
-                        System.out.println("Вводимая строка должна содержать положительные числа, запятые и дефисы");
+                        System.out.println("Вводимая строка должна содержать положительные числа, запятые и дефисы." +
+                                "Строка должна начинаться и оканчиваться числом");
                         string = scanner.nextLine();
                     }
                     indexes[0] = string;
